@@ -1,0 +1,75 @@
+{
+  "name": "@ci/lib",
+  "version": "0.1.0",
+  "description": "Cyber Imagination Library",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Cyber Imagination",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./http": "./src/http/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.0.2",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@ci/eslint-config": "workspace:*",
+    "@ci/postcss-config": "workspace:*",
+    "@ci/typescript-config": "workspace:*",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.3.0",
+    "vite-plugin-lib-inject-css": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.0.2",
+    "zustand": "^5.0.2"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs",
+        "types": "./dist/index.d.ts"
+      },
+      "./hooks": {
+        "import": "./dist/hooks.js",
+        "require": "./dist/hooks.cjs",
+        "types": "./dist/hooks.d.ts"
+      },
+      "./http": {
+        "import": "./dist/http.js",
+        "require": "./dist/http.cjs",
+        "types": "./dist/http.d.ts"
+      },
+      "./utils": {
+        "import": "./dist/utils.js",
+        "require": "./dist/utils.cjs",
+        "types": "./dist/utils.d.ts"
+      }
+    },
+    "registry": "https://nexus.ci.com/repository/npm-private/"
+  }
+}

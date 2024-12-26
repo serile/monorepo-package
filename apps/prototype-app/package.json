@@ -1,0 +1,56 @@
+{
+  "name": "@ci/prototype-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "dev": "vite",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ci/lib": "workspace:*",
+    "@mantine/carousel": "^7.15.2",
+    "@mantine/charts": "^7.15.2",
+    "@mantine/core": "^7.15.2",
+    "@mantine/dates": "^7.15.2",
+    "@mantine/form": "^7.15.2",
+    "@mantine/hooks": "^7.15.2",
+    "@mantine/modals": "^7.15.2",
+    "@mantine/notifications": "^7.15.2",
+    "@mantine/tiptap": "^7.15.2",
+    "@tanstack/react-query": "^5.62.10",
+    "@tiptap/extension-link": "^2.10.4",
+    "@tiptap/pm": "^2.10.4",
+    "@tiptap/react": "^2.10.4",
+    "@tiptap/starter-kit": "^2.10.4",
+    "dayjs": "^1.11.13",
+    "embla-carousel-react": "^7.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.1.1",
+    "recharts": "^2.15.0",
+    "zod": "^3.24.1",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@ci/eslint-config": "workspace:*",
+    "@ci/postcss-config": "workspace:*",
+    "@ci/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "clsx": "^2.1.1",
+    "eslint": "^9.17.0",
+    "msw": "^2.7.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@ci/postcss-config",
+  "version": "0.0.0",
+  "description": "Cyber Imagination postcss configurations",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Cyber Imagination",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./postcss.config.js",
+      "require": "./postcss.config.cjs",
+      "types": "./postcss.config.d.ts"
+    }
+  },
+  "dependencies": {
+    "@csstools/postcss-design-tokens": "^4.0.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "postcss-calc": "^10.0.2",
+    "postcss-each": "^1.1.0",
+    "postcss-for": "^2.1.1",
+    "postcss-functions": "^4.0.2",
+    "postcss-import": "^16.1.0",
+    "postcss-load-config": "^6.0.1",
+    "postcss-mixins": "^11.0.3",
+    "postcss-nested": "^7.0.2",
+    "postcss-preset-env": "^10.1.1",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-rem": "^3.0.0",
+    "postcss-simple-vars": "^7.0.1"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.49"
+  },
+  "peerDependenciesMeta": {
+    "postcss": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://nexus.ci.com/repository/npm-private/"
+  }
+}

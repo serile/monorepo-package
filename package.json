@@ -1,0 +1,30 @@
+{
+  "name": "ci",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cyber Imagination Monorepo Package",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Cyber Imagination",
+  "type": "module",
+  "scripts": {
+    "clean": "turbo clean && rm -rf node_modules",
+    "fix-mismatches": "syncpack fix-mismatches && pnpm install",
+    "list-mismatches": "syncpack list-mismatches",
+    "list-packages": "syncpack list",
+    "proto": "pnpm --filter @ci/prototype-app"
+  },
+  "config": {},
+  "devDependencies": {
+    "@ci/eslint-config": "workspace:*",
+    "@ci/prettier-config": "workspace:*",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "syncpack": "^13.0.0",
+    "turbo": "^2.3.3"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

@@ -1,0 +1,5 @@
+export { config as baseConfig } from './base.js'
+export { config as libraryConfig } from './library.js'
+export { config as reactConfig } from './react.js'
+export { config as storybookConfig } from './storybook.js'
+export { config as testingConfig } from './testing.js'
