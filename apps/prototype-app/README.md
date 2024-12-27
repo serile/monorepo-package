@@ -48,3 +48,10 @@ export default tseslint.config({
   },
 })
 ```
+
+## TODO
+
+- 회원가입 페이지
+- auth store 적용
+- auth guard 적용
+- react query 적용
