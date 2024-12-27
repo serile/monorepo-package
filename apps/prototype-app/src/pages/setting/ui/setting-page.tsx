@@ -1,11 +1,8 @@
 import { useEffect } from 'react'
 
-import type { ApiResponse } from '@ci/lib/http'
-import { clientErrorHandler } from '@ci/lib/http'
-import type { GetMemberMeResponseBody } from '@entities/auth'
+import { useMemberQuery } from '@entities/auth'
 import { TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { httpClient } from '@shared/config'
 
 export function SettingPage() {
   const form = useForm({
@@ -16,22 +13,19 @@ export function SettingPage() {
     },
   })
 
+  const { useReadItem } = useMemberQuery()
+  const { data } = useReadItem()
+
   useEffect(() => {
-    httpClient
-      .get<ApiResponse<GetMemberMeResponseBody>>('/api/auth/me')
-      .then((response) => {
-        console.log(response)
-        form.setValues({
-          email: response.data.data.email,
-          name: response.data.data.name,
-        })
-        form.resetDirty()
+    if (data) {
+      form.setValues({
+        email: data.data.email,
+        name: data.data.name,
       })
-      .catch((error) => {
-        clientErrorHandler.log(error)
-      })
+      form.resetDirty()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- form is not a dependency
-  }, [])
+  }, [data])
 
   return (
     <div>

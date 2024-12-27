@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react'
 
-import type { ApiResponse } from '@ci/lib/http'
-import { clientErrorHandler } from '@ci/lib/http'
-import type { GetMemberMeResponseBody } from '@entities/auth'
-import { httpClient } from '@shared/config'
+import { useMemberQuery, type GetMemberMeResponseBody } from '@entities/auth'
 
 export function MainPage() {
   const [user, setUser] = useState<GetMemberMeResponseBody>()
 
+  const { useReadItem } = useMemberQuery()
+  const { data } = useReadItem()
+
   useEffect(() => {
-    httpClient
-      .get<ApiResponse<GetMemberMeResponseBody>>('/api/auth/me')
-      .then((response) => {
-        setUser(response.data.data)
+    if (data) {
+      setUser({
+        email: data.data.email,
+        name: data.data.name,
       })
-      .catch((error) => {
-        clientErrorHandler.log(error)
-      })
-  }, [])
+    }
+  }, [data])
 
   return (
     <div>
