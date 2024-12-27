@@ -1,7 +1,9 @@
+import type { ApiResponse } from '@ci/lib/http'
+import type { PostSignInResponseBody } from '@entities/auth'
 import { Button, Center, Container, Flex, PasswordInput, TextInput } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { httpClient } from '@shared/config'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
 
 import classes from './sign-in-page.module.css'
@@ -16,6 +18,8 @@ const schema = z.object({
 type FormType = z.infer<typeof schema>
 
 export function SignInPage() {
+  const navigate = useNavigate()
+
   const form = useForm<FormType>({
     initialValues: {
       email: '',
@@ -26,8 +30,10 @@ export function SignInPage() {
 
   const handleSubmit = async (values: typeof form.values) => {
     console.log(values)
-    const response = await httpClient.post('/api/auth/sign-in', values)
+    const response = await httpClient.post<ApiResponse<PostSignInResponseBody>>('/api/auth/sign-in', values)
     console.log(response)
+    window.localStorage.setItem('accessToken', response.data.data.accessToken)
+    await navigate('/main')
   }
 
   return (

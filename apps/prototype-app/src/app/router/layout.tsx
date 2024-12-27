@@ -1,12 +1,19 @@
-import { AppShell, Burger } from '@mantine/core'
+import { Anchor, AppShell, Burger, Flex } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { Link, useNavigate } from 'react-router'
 
 type LayoutProps = {
   children: React.ReactNode
 }
 
 export function Layout({ children }: LayoutProps) {
+  const navigate = useNavigate()
   const [opened, { toggle }] = useDisclosure()
+
+  const handleSignOutClick = () => {
+    window.localStorage.removeItem('accessToken')
+    void navigate('/sign-in')
+  }
 
   return (
     <AppShell
@@ -25,10 +32,16 @@ export function Layout({ children }: LayoutProps) {
           hiddenFrom="sm"
           size="sm"
         />
-        <div>Logo</div>
+        <Flex justify="space-between">
+          <div>Logo</div>
+          <Anchor onClick={handleSignOutClick}>Sign out</Anchor>
+        </Flex>
       </AppShell.Header>
 
-      <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+      <AppShell.Navbar p="md">
+        <Link to="/main">Main</Link>
+        <Link to="/setting">Setting</Link>
+      </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>

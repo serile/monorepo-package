@@ -1,5 +1,6 @@
+import type { HttpHandler } from 'msw'
 import { setupWorker } from 'msw/browser'
 
-import { handlers } from './handlers'
-
-export const worker = setupWorker(...handlers)
+export function getWorker(handlers: HttpHandler[]) {
+  return setupWorker(...handlers)
+}

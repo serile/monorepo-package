@@ -1,5 +1,6 @@
 import { IndexPage } from '@pages/index'
 import { MainPage } from '@pages/main'
+import { SettingPage } from '@pages/setting'
 import { SignInPage } from '@pages/sign-in'
 import { SignUpPage } from '@pages/sign-up'
 import { createBrowserRouter, Outlet, ScrollRestoration } from 'react-router'
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
           {
             path: 'main',
             element: <MainPage />,
+          },
+          {
+            path: 'setting',
+            element: <SettingPage />,
           },
         ],
       },

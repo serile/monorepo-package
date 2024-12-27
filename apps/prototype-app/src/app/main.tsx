@@ -9,7 +9,10 @@ async function enableMocking() {
     return
   }
 
-  const { worker } = await import('@shared/config')
+  const { getWorker } = await import('@shared/config')
+  const { getMockHandlers } = await import('@features/get-mock-handlers')
+  const handlers = getMockHandlers()
+  const worker = getWorker(handlers)
 
   // `worker.start()` returns a Promise that resolves
   // once the Service Worker is up and ready to intercept requests.
