@@ -12,9 +12,9 @@ export function useSignUpQuery() {
         const response = await httpClient.post('/api/auth/sign-up', params)
         return response
       },
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: [''],
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: ['auth', 'me', 'item'],
         })
       },
     })
