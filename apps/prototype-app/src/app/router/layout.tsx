@@ -1,6 +1,8 @@
+import { Suspense } from 'react'
+
 import { Anchor, AppShell, Burger, Flex } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { Link, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -8,6 +10,7 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
   const navigate = useNavigate()
+  const location = useLocation()
   const [opened, { toggle }] = useDisclosure()
 
   const handleSignOutClick = () => {
@@ -43,7 +46,14 @@ export function Layout({ children }: LayoutProps) {
         <Link to="/setting">Setting</Link>
       </AppShell.Navbar>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main>
+        <Suspense
+          key={location.key}
+          fallback="loading..."
+        >
+          {children}
+        </Suspense>
+      </AppShell.Main>
     </AppShell>
   )
 }

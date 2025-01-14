@@ -1,4 +1,6 @@
+import { config as prettierConfig } from './prettier.js'
+
 /**
- * @type {import("eslint").Linter.Config}
+ * @type {import("eslint").Linter.Config[]}
  */
-export const config = []
+export const config = [...prettierConfig]

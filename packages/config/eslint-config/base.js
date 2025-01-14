@@ -3,18 +3,17 @@ import eslint from '@eslint/js'
 import markdown from '@eslint/markdown'
 import pluginEslintComment from 'eslint-plugin-eslint-comments'
 import pluginImport from 'eslint-plugin-import'
-import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import pluginTurbo from 'eslint-plugin-turbo'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
 import globals from 'globals'
 
 /**
- * @type {import("eslint").Linter.Config}
+ * @type {import("eslint").Linter.Config[]}
  */
 export const config = [
   eslint.configs.recommended,
   {
-    name: 'Config eslint',
+    name: 'base/eslint-rule-setup',
     rules: {
       'sort-imports': 'off',
       'no-unused-vars': 'off',
@@ -22,13 +21,9 @@ export const config = [
     },
   },
   {
-    name: 'Config prettier',
-    ...pluginPrettierRecommended,
-  },
-  {
-    name: 'Config languageOptions',
+    name: 'base/language-setup',
     languageOptions: {
-      ecmaVersion: 2024,
+      ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
         ...globals.node,
@@ -36,7 +31,7 @@ export const config = [
     },
   },
   {
-    name: 'Config import plugin',
+    name: 'base/import-plugin-config',
     ...pluginImport.flatConfigs.recommended,
     rules: {
       'import/no-named-as-default': 'off',
@@ -47,7 +42,7 @@ export const config = [
           pathGroups: [
             { pattern: 'react', group: 'builtin', position: 'before' },
             { pattern: 'react-dom', group: 'builtin', position: 'before' },
-            { pattern: '@ci', group: 'external', position: 'after' },
+            { pattern: '@dexp', group: 'external', position: 'after' },
             { pattern: '@pages', group: 'internal', position: 'before' },
             { pattern: '@widgets', group: 'internal', position: 'before' },
             { pattern: '@features', group: 'internal', position: 'before' },
@@ -65,12 +60,12 @@ export const config = [
     },
   },
   {
-    name: 'Config unused import plugin',
+    name: 'base/unused-import-plugin-config',
     plugins: {
       'unused-imports': pluginUnusedImports,
     },
     rules: {
-      'unused-imports/no-unused-imports': 'warn',
+      'unused-imports/no-unused-imports': 'off',
       'unused-imports/no-unused-vars': [
         'warn',
         {
@@ -83,7 +78,7 @@ export const config = [
     },
   },
   {
-    name: 'Config eslint comment plugin',
+    name: 'base/eslint-comment-plugin-config',
     plugins: {
       'eslint-comments': fixupPluginRules(pluginEslintComment),
     },
@@ -92,7 +87,7 @@ export const config = [
     },
   },
   {
-    name: 'Config turbo plugin',
+    name: 'base/turbo-plugin-config',
     plugins: {
       turbo: pluginTurbo,
     },
@@ -106,7 +101,7 @@ export const config = [
     },
   },
   {
-    name: 'Config markdown',
+    name: 'base/markdown-config',
     files: ['**/*.md'],
     plugins: {
       markdown,
@@ -114,7 +109,7 @@ export const config = [
     processor: 'markdown/markdown',
   },
   {
-    name: 'Config ignore patterns',
-    ignores: ['node_modules/**', 'dist/**', '.*/**', '*.config.*', '*.yaml', 'scripts/**'],
+    name: 'base/ignore-setup',
+    ignores: ['node_modules/**', 'dist/**', 'scripts/**', '.*/**', '**/*.config.*', '!**/eslint.config.js', '*.yaml'],
   },
 ]

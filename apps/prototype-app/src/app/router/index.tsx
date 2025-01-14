@@ -1,11 +1,14 @@
+import { lazy } from 'react'
+
 import { IndexPage } from '@pages/index'
-import { MainPage } from '@pages/main'
-import { SettingPage } from '@pages/setting'
 import { SignInPage } from '@pages/sign-in'
 import { SignUpPage } from '@pages/sign-up'
 import { createBrowserRouter, Outlet, ScrollRestoration } from 'react-router'
 
 import { Layout } from './layout'
+
+const MainPage = lazy(() => import('@pages/main').then((module) => ({ default: module.MainPage })))
+const SettingPage = lazy(() => import('@pages/setting').then((module) => ({ default: module.SettingPage })))
 
 export const router = createBrowserRouter([
   {
