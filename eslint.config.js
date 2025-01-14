@@ -1,17 +1,17 @@
-import { baseConfig } from '@ci/eslint-config';
+import { baseConfig } from '@ci/eslint-config'
 
 /**
- * @type {import("eslint").Linter.Config}
+ * @type {import("eslint").Linter.Config[]}
  */
 export default [
   ...baseConfig,
   {
     languageOptions: {
-      ecmaVersion: 2024,
+      ecmaVersion: 2022,
       sourceType: 'module',
       parserOptions: {
         allowDefaultProject: true,
       },
     },
   },
-];
+]
